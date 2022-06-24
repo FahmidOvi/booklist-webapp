@@ -22,6 +22,11 @@ router.get('/', (req, res, next) => {
     });
 });
 router.get('/add', (req, res, next) => {
+    res.render('books/details', {
+        title: 'Add',
+        page: 'books',
+        books: ''
+    });
 });
 router.post('/add', (req, res, next) => {
 });
