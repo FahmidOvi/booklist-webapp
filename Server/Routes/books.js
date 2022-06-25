@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
 });
 router.get('/add', (req, res, next) => {
     res.render('books/details', {
-        title: 'Add Books',
+        title: 'Add Book',
         page: 'books',
         books: ''
     });
@@ -35,7 +35,7 @@ router.post('/add', (req, res, next) => {
         "Author": req.body.author,
         "Genre": req.body.genre
     });
-    books_1.default.create(newBook, function (err) {
+    books_1.default.create(newBook, (err) => {
         if (err) {
             console.error(err);
             res.end(err);
@@ -45,6 +45,19 @@ router.post('/add', (req, res, next) => {
     });
 });
 router.get('/:id', (req, res, next) => {
+    let id = req.params.id;
+    books_1.default.findById(id, {}, {}, (err, bookToEdit) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        ;
+        res.render('books/details', {
+            title: 'Edit Book',
+            page: 'books',
+            books: bookToEdit
+        });
+    });
 });
 router.post('/:id', (req, res, next) => {
 });
