@@ -54,41 +54,40 @@ router.post('/add', (req, res, next) => {
   {
       if (err)
       {
-        return console.error(err);
-      } 
-      else {
-        res.redirect('/books');
+        console.error(err);
+        res.end(err);
       };
-      
+      res.redirect('/books');
   });
 
 });
 
 // GET the Book Details page in order to edit an existing Book
 router.get('/:id', (req, res, next) => {
-    // declaring and initializing id variable with id property of req object
+    // declaring and initializing id variable with id parameter of req object
     let id = req.params.id;
 
     // fetch book by id
     book.findById(id, {}, {}, (err, bookToEdit ) => {
       if (err)
       {
-        return console.error(err);
-      } 
-      else {
+        console.error(err);
+        res.end(err);
+      };
+
       // show the books/details page with the data
       res.render('books/details', {
         title: 'Edit Book',
         page: 'books',
         books : bookToEdit
-      })};
+      });
     });
 });
 
 // POST - process the information passed from the details form and update the document
 router.post('/:id', (req, res, next) => {
 
-  // declaring and initializing id variable with id property of req object
+  // declaring and initializing id variable with id parameter of req object
   let id = req.params.id;
 
   // instantiate a new book to update
@@ -106,19 +105,20 @@ router.post('/:id', (req, res, next) => {
   {
       if (err)
       {
-        return console.error(err);
-      } 
-      else {
+        console.error(err);
+        res.end(err);
+      };
+
       // update successful -> redirect back to books page
       res.redirect('/books');
-      };
   });
+
 });
 
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
 
-  // declaring and initializing id variable with id property of req object
+  // declaring and initializing id variable with id parameter of req object
   let id = req.params.id;
 
   // remove book by id
@@ -126,13 +126,13 @@ router.get('/delete/:id', (req, res, next) => {
   {
     if (err)
       {
-        return console.error(err);
-      } else 
-      {
-        // remove successful -> redirect back to book page  
-        res.redirect('/books');
+        console.error(err);
+        res.end(err);
       };
-  });
+
+    // remove successful -> redirect back to book page  
+    res.redirect('/books');
+  })
 });
 
 

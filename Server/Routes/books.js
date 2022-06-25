@@ -37,26 +37,28 @@ router.post('/add', (req, res, next) => {
     });
     books_1.default.create(newBook, (err) => {
         if (err) {
-            console.error(err);
-            res.end(err);
+            return console.error(err);
+        }
+        else {
+            res.redirect('/books');
         }
         ;
-        res.redirect('/books');
     });
 });
 router.get('/:id', (req, res, next) => {
     let id = req.params.id;
     books_1.default.findById(id, {}, {}, (err, bookToEdit) => {
         if (err) {
-            console.error(err);
-            res.end(err);
+            return console.error(err);
+        }
+        else {
+            res.render('books/details', {
+                title: 'Edit Book',
+                page: 'books',
+                books: bookToEdit
+            });
         }
         ;
-        res.render('books/details', {
-            title: 'Edit Book',
-            page: 'books',
-            books: bookToEdit
-        });
     });
 });
 router.post('/:id', (req, res, next) => {
@@ -70,13 +72,24 @@ router.post('/:id', (req, res, next) => {
     });
     books_1.default.updateOne({ "_id": id }, updatedBook, (err) => {
         if (err) {
-            console.error(err);
-            res.end(err);
+            return console.error(err);
+        }
+        else {
+            res.redirect('/books');
         }
         ;
-        res.redirect('/books');
     });
 });
 router.get('/delete/:id', (req, res, next) => {
+    let id = req.params.id;
+    books_1.default.remove({ "_id": id }, (err) => {
+        if (err) {
+            return console.error(err);
+        }
+        else {
+            res.redirect('/books');
+        }
+        ;
+    });
 });
 //# sourceMappingURL=books.js.map

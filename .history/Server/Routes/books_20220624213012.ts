@@ -58,7 +58,7 @@ router.post('/add', (req, res, next) => {
       } 
       else {
         res.redirect('/books');
-      };
+      }
       
   });
 
@@ -106,13 +106,14 @@ router.post('/:id', (req, res, next) => {
   {
       if (err)
       {
-        return console.error(err);
-      } 
-      else {
+        console.error(err);
+        res.end(err);
+      };
+
       // update successful -> redirect back to books page
       res.redirect('/books');
-      };
   });
+
 });
 
 // GET - process the delete by user id
@@ -126,13 +127,13 @@ router.get('/delete/:id', (req, res, next) => {
   {
     if (err)
       {
-        return console.error(err);
-      } else 
-      {
-        // remove successful -> redirect back to book page  
-        res.redirect('/books');
+        console.error(err);
+        res.end(err);
       };
-  });
+
+    // remove successful -> redirect back to book page  
+    res.redirect('/books');
+  })
 });
 
 
