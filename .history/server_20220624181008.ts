@@ -1,10 +1,3 @@
-/*
-File Name: Server.js
-Author's Name: Fahmid Ovi
-Student ID: 301216822
-Web App Name: Favourite Book List
-*/
-
 import createError from 'http-errors';
 import app from './Server/Config/app';
 import debug from 'debug';
