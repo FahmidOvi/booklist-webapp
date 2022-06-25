@@ -28,13 +28,12 @@ router.get('/', (req, res, next) =>
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
 
-    // renders the book details page with blank form
     res.render('books/details', {
       title: 'Add Books',
       page: 'books',
       books : ''
     });
-
+    
 });
 
 // POST process the Book Details page and create a new Book - CREATE
