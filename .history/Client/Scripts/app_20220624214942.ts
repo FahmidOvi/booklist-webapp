@@ -1,5 +1,5 @@
 /*
-File Name: App script client-Side
+File Name: App Scripts Client-Side
 Author's Name: Fahmid Ovi
 Student ID: 301216822
 Web App Name: Favourite Book List

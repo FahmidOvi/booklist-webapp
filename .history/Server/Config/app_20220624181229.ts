@@ -1,10 +1,3 @@
-/*
-File Name: App config server-side
-Author's Name: Fahmid Ovi
-Student ID: 301216822
-Web App Name: Favourite Book List
-*/
-
 // modules for node and express
 import createError from 'http-errors';
 import express from 'express';
